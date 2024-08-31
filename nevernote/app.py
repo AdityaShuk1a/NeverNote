@@ -2,6 +2,7 @@ import numpy as np
 import os
 
 def enterData(files):
+    
     # Opening file
     print("Write in nevernote:\n")
     with open(files, "a") as file:
@@ -21,6 +22,7 @@ def readData(files):
             print(line, end="")
 
 def addFile(a):
+    
     with open("pvt_file.txt", "a") as file:
         file.write(a + ",")
 
@@ -59,5 +61,9 @@ if collection.size != 0:
 
 file_index = int(input("Enter the file number you want to open: "))
 files = collection[file_index].decode('utf-8')
+if(os.path.getsize(files)!=0):
+    print("your previous saved notes")
+    readData(files)
+
 enterData(files)
 readData(files)
