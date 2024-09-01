@@ -1,4 +1,5 @@
 import numpy as np
+from access_control import saveInfo, loadInfo, user_choice
 import os
 
 def enterData(files):
