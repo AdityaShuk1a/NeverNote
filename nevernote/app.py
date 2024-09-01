@@ -44,4 +44,4 @@ if(os.path.getsize(files)!=0):
 
 enterData(files)
 readData(files)
-print("THANK YOU")
+print("THAnks")
