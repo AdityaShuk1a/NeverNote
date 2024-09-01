@@ -1,37 +1,12 @@
 import numpy as np
-from access_control import saveInfo, loadInfo, user_choice
+from access_control import  user_choice
 import os
+from accessFile import enterData, readData
+from createFile import addFile, readFile
 
-def enterData(files):
-    
-    # Opening file
-    print("Write in nevernote:\n")
-    with open(files, "a") as file:
-        while True:
-            print("Enter X to exit: \n")
-            a = input()
-            if a == "X":
-                break
-            file.writelines(a + '\n')
 
-def readData(files):
-    # Reading data
-    print("Data\n")
-    with open(files, "r") as file:
-        lines = file.readlines()
-        for line in lines:
-            print(line, end="")
 
-def addFile(a):
-    
-    with open("pvt_file.txt", "a") as file:
-        file.write(a + ",")
 
-def readFile(s):
-    with open(s, 'r') as file:
-        lines = file.read().split(",")
-        print(lines)
-    return lines
 
 myFiles = "pvt_file.txt"
 
@@ -55,7 +30,7 @@ while True:
         print("Wrong input. Enter again!")
         continue
 
-collection = np.array(readfile, dtype='S')
+collection = readfile
 if collection.size != 0:
     for i in np.nditer(collection):
         print(i)
@@ -65,6 +40,7 @@ files = collection[file_index].decode('utf-8')
 if(os.path.getsize(files)!=0):
     print("your previous saved notes")
     readData(files)
+
 
 enterData(files)
 readData(files)
