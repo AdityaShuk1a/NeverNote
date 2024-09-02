@@ -1,5 +1,7 @@
 import os
 import numpy as np
+user_data="usernames.txt";
+pswd_data="password.txt";
 def saveInfo():
     while 1:
         user =input("Enter the username: ")
@@ -24,8 +26,17 @@ def loadInfo(uname):
     else:
         print("Sorry, Username does not exist -_-\n~Try again~")
        
-def user_choice(choice):
-    match choice:
+def user_choice():
+    
+    # with open(user_data, "w") as file:
+    #     pass
+    # with open(pswd_data, "w") as file:
+    #     pass
+    option=int(input("~~ENTER YOUR CHOICE~~\n1 for saving username and password\n\n2 for finding the password for the username\n\n0 to EXIT\n"))
+    while(option!=0):
+        user_choice(option)
+        option=int(input("~~ENTER YOUR CHOICE~~\n1 for saving username and password\n\n2 for finding the password for the username\n\n0 to EXIT\n"))
+    match option:
         case 1:
             saveInfo()
         case 2:
@@ -33,13 +44,3 @@ def user_choice(choice):
             loadInfo(uname)
         case _:
             print("Invalid choice. \nEnter 1 or 2\n")
-user_data="usernames.txt";
-pswd_data="password.txt";
-# with open(user_data, "w") as file:
-#     pass
-# with open(pswd_data, "w") as file:
-#     pass
-option=int(input("~~ENTER YOUR CHOICE~~\n1 for saving username and password\n\n2 for finding the password for the username\n\n0 to EXIT\n"))
-while(option!=0):
-    user_choice(option)
-    option=int(input("~~ENTER YOUR CHOICE~~\n1 for saving username and password\n\n2 for finding the password for the username\n\n0 to EXIT\n"))
