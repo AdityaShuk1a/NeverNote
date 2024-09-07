@@ -21,3 +21,4 @@ def user_choice():
                 loadInfo(uname)
             case _:
                 print("Invalid choice. \nEnter 1 or 2\n")
+            
