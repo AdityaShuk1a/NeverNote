@@ -22,10 +22,7 @@ def db_connect(query, value=None):
         else:
             cur.execute(query, value)
 
-        # first_query = '''INSERT INTO SignUp (Name, Password) values(%s,%s)'''
-        # insertValues = (user, pswd)
         
-        # cur.execute(first_query, insertValues)
         conn.commit()
         print("Data inserted successfully")
 
