@@ -19,9 +19,11 @@ from django.urls import path, include
 from module.views import *
 from rest_framework import routers, serializers, viewsets
 from api.views import *
+# from api.urls import *
 
 urlpatterns = [
     path('admin/', admin.site.urls),
+    path('', include('api.urls')),
     path('api-auth/', include('rest_framework.urls')),
     
 ]
