@@ -92,7 +92,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'NeverNote',
         'USER': 'postgres',
-        'PASSWORD': 'kalisto',
+        'PASSWORD': '2730',
         'HOST': 'localhost',  # Set to 'localhost' if the database is on the same machine
         'PORT': '5432',  # Default is '5432'
     }
