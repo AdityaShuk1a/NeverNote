@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 late Size mq;
 
@@ -17,9 +18,9 @@ class _RegisterState extends State<Register> {
       appBar: AppBar(
         title: const Text('Register'),
       ),
-      body: Center( // Center the container
+      body: Center(
         child: Container(
-          constraints: const BoxConstraints(maxWidth: 600), // Set max width
+          constraints: const BoxConstraints(maxWidth: 600),
           decoration: BoxDecoration(
             color: Colors.grey[200],
           ),
@@ -37,7 +38,7 @@ class _RegisterState extends State<Register> {
                       onPressed: () {
                         // Navigate to sign in
                       },
-                      child: const Text('Sign in'),
+                      child: const Text('Log in'),
                     ),
                   ],
                 ),
@@ -84,6 +85,34 @@ class _RegisterState extends State<Register> {
                     // Handle registration
                   },
                   child: const Text('Register'),
+                ),
+                const SizedBox(height: 24),
+                const Text('or register with'),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: const Icon(FontAwesomeIcons.google),
+                      onPressed: () {
+                        // Handle Google login
+                      },
+                    ),
+                    const SizedBox(width: 16),
+                    IconButton(
+                      icon: const Icon(FontAwesomeIcons.github),
+                      onPressed: () {
+                        // Handle GitHub login
+                      },
+                    ),
+                    const SizedBox(width: 16),
+                    IconButton(
+                      icon: const Icon(FontAwesomeIcons.linkedin),
+                      onPressed: () {
+                        // Handle LinkedIn login
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),

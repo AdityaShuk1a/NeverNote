@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 
 late Size mq;
 
@@ -49,7 +50,6 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -58,13 +58,40 @@ class _SignInState extends State<SignIn> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () {
-                    // Handle registration
+                    // Handle login
                   },
                   child: const Text('Log in'),
+                ),
+                const SizedBox(height: 24),
+                const Text('or log in with'),
+                const SizedBox(height: 16),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    IconButton(
+                      icon: const Icon(FontAwesomeIcons.google), // Google icon
+                      onPressed: () {
+                        // Handle Google login
+                      },
+                    ),
+                    const SizedBox(width: 16),
+                    IconButton(
+                        icon: const Icon(FontAwesomeIcons.github), // GitHub icon
+                      onPressed: () {
+                        // Handle GitHub login
+                      },
+                    ),
+                    const SizedBox(width: 16),
+                    IconButton(
+                       icon: const Icon(FontAwesomeIcons.linkedin), // linkedin icon
+                      onPressed: () {
+                        // Handle Facebook login
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
