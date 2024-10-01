@@ -2,20 +2,20 @@ import 'package:flutter/material.dart';
 
 late Size mq;
 
-class Register extends StatefulWidget {
-  const Register({super.key});
+class SignIn extends StatefulWidget {
+  const SignIn({super.key});
 
   @override
-  State<Register> createState() => _RegisterState();
+  State<SignIn> createState() => _SignInState();
 }
 
-class _RegisterState extends State<Register> {
+class _SignInState extends State<SignIn> {
   @override
   Widget build(BuildContext context) {
     mq = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Register'),
+        title: const Text('Log In'),
       ),
       body: Center( // Center the container
         child: Container(
@@ -31,13 +31,13 @@ class _RegisterState extends State<Register> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    const Text('Already a member? Click'),
+                    const Text('New to NeverNote? Click'),
                     const SizedBox(width: 8),
                     ElevatedButton(
                       onPressed: () {
                         // Navigate to sign in
                       },
-                      child: const Text('Sign in'),
+                      child: const Text('Register'),
                     ),
                   ],
                 ),
@@ -49,20 +49,7 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Email',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 16),
-                TextFormField(
-                  decoration: const InputDecoration(
-                    labelText: 'Phone Number',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
-                const SizedBox(height: 16),
+                
                 TextFormField(
                   obscureText: true,
                   decoration: const InputDecoration(
@@ -71,19 +58,13 @@ class _RegisterState extends State<Register> {
                   ),
                 ),
                 const SizedBox(height: 16),
-                TextFormField(
-                  obscureText: true,
-                  decoration: const InputDecoration(
-                    labelText: 'Confirm Password',
-                    border: OutlineInputBorder(),
-                  ),
-                ),
+                
                 const SizedBox(height: 24),
                 ElevatedButton(
                   onPressed: () {
                     // Handle registration
                   },
-                  child: const Text('Register'),
+                  child: const Text('Log in'),
                 ),
               ],
             ),
