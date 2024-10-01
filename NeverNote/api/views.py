@@ -6,7 +6,7 @@ from module.serializers import *
 # Create your views here.
 
 class UserDataList(generics.ListCreateAPIView):
-    queryset = UserModel.objects.all()
+    queryset = UserModel.objects.all().order_by('-timestamp')
     serializer_class = UserModelSerializer
 
 # def signup(request):
