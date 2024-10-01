@@ -28,7 +28,3 @@ urlpatterns = [
     
 ]
 
-# urlpatterns = [
-#     ...
-    
-# ]
