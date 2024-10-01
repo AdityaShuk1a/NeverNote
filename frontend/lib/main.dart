@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'pages/home_page.dart';
+import 'pages/auth/register.dart';
 
 void main() => runApp(MaterialApp(
   theme: ThemeData(
@@ -11,7 +12,7 @@ void main() => runApp(MaterialApp(
         ),
     )
   ),
-  home: const Home(),
+  home: const Register(),
 ));
  
 
