@@ -32,6 +32,7 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(height: 48),
 
+
               ]
             ),
             
