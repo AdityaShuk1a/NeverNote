@@ -13,7 +13,7 @@ void main() => runApp(MaterialApp(
         ),
     )
   ),
-  home: const SignIn(),
+  home: const Register(),
 ));
  
 
