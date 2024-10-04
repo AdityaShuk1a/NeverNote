@@ -6,7 +6,7 @@ void main() => runApp(MaterialApp(
     appBarTheme: const AppBarTheme(
       centerTitle: true,
       titleTextStyle:  TextStyle(
-        color: Colors.red,
+        
         fontSize: 20.0,
         ),
     )
