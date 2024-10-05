@@ -14,7 +14,9 @@ class UserModel(models.Model):
     user_email = models.EmailField(validators=[validate_email], null=False)
     user_phone_number=models.BigIntegerField(null=False)
     timestamp = models.BigIntegerField(default=current_timestamp, editable=False)
+    user_password = models.CharField(max_length=25)
     
     
     
 #no changes, just checking
+
