@@ -44,7 +44,13 @@ class _HomeState extends State<Home> {
               child: ListView.separated(
                 padding: const EdgeInsets.all(8.0),
                 itemCount: 15, // Number of chat items
-                separatorBuilder: (context, index) => const Divider(),
+                separatorBuilder: (context, index) => const Divider(
+                  height: 20,
+                thickness: 2,
+                indent: 20,
+                endIndent: 0,
+                color: Colors.white,
+                    ),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
