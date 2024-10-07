@@ -16,31 +16,34 @@ class _HomeState extends State<Home> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          onPressed: () {},
+          onPressed: () {
+            
+          },
           icon: const Icon(Icons.dehaze),
+          color: Colors.white,
         ),
         centerTitle: true,
         title: const Text(
           'NeverNote',
           style: TextStyle(color: Colors.white),
         ),
-        backgroundColor: Colors.green,
+        backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         elevation: 4,
       ),
       body: Container(
         decoration: const BoxDecoration(
-          gradient: LinearGradient(
-            colors: [Colors.white, Colors.white],
-            begin: Alignment.topLeft,
-            end: Alignment.bottomRight,
-          ),
+          color: Colors.black,
         ),
         child: Column(
           children: [
+            const Divider(
+              height: 10.0,
+              color: Colors.white,
+            ),
             Expanded(
               child: ListView.separated(
                 padding: const EdgeInsets.all(8.0),
-                itemCount: 5, // Number of chat items
+                itemCount: 15, // Number of chat items
                 separatorBuilder: (context, index) => const Divider(),
                 itemBuilder: (context, index) {
                   return InkWell(
@@ -52,12 +55,32 @@ class _HomeState extends State<Home> {
                     child: ListTile(
                       
                       leading: const CircleAvatar(
-                        backgroundColor: Colors.green,
-                        child: Text('A'), // Placeholder for contact initial
+                        backgroundColor: Colors.white,
+                        child: Text(
+                          'A',
+                          style: TextStyle(
+                            color: Colors.black,
+                          ),
+                        ), // Placeholder for contact initial
                       ),
-                      title: Text('Chat ${index + 1}'),
-                      subtitle: Text('Last message preview...'),
-                      trailing: Text('12:00 PM'), // Placeholder for timestamp
+                      title: Text(
+                        'Chat ${index + 1}',
+                        style: const TextStyle(
+                          color: Colors.white,
+                        ),
+                      
+                      ),
+                      subtitle: const Text(
+                        'Previous typed msg....',
+                      style: TextStyle(
+                        color: Colors.grey,
+                      ),
+                      ),
+                      trailing: const Text(
+                        '12:00 PM',
+                        style: TextStyle(
+                          color: Colors.grey,
+                        ),), // Placeholder for timestamp
                     ),
                   );
                 },
