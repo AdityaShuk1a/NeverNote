@@ -43,7 +43,8 @@ INSTALLED_APPS = [
 EXTERNAL_APPS = [
     'module',
     'rest_framework',
-    'api',
+  
+    'NeverNote'
     
 ]
 
@@ -105,7 +106,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'NeverNote',
         'USER': 'postgres',
-        'PASSWORD': 'kalisto',
+        'PASSWORD': 'admin',
         'HOST': 'localhost',  # Set to 'localhost' if the database is on the same machine
         'PORT': '5432',  # Default is '5432'
     }
@@ -161,3 +162,5 @@ REST_FRAMEWORK = {
         'rest_framework.permissions.DjangoModelPermissionsOrAnonReadOnly'
     ]
 }
+
+# AUTH_USER_MODEL = 'NeverNote.CustomUser'                                                           
