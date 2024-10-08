@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:nevernote/components/drawer.dart';
 
 late Size mq;
 
@@ -15,13 +16,17 @@ class _HomeState extends State<Home> {
     mq = MediaQuery.of(context).size;
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(
-          onPressed: () {
-            
+        leading: Builder(
+          builder: (context) {
+            return IconButton(
+              icon: Icon(Icons.menu, color: Colors.white), // Custom icon and color
+              onPressed: () {
+                Scaffold.of(context).openDrawer();
+              },
+            );
           },
-          icon: const Icon(Icons.dehaze),
-          color: Colors.white,
         ),
+        
         centerTitle: true,
         title: const Text(
           'NeverNote',
@@ -30,6 +35,7 @@ class _HomeState extends State<Home> {
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         elevation: 4,
       ),
+      drawer: DrawerBar(),
       body: Container(
         decoration: const BoxDecoration(
           color: Colors.black,
@@ -44,7 +50,13 @@ class _HomeState extends State<Home> {
               child: ListView.separated(
                 padding: const EdgeInsets.all(8.0),
                 itemCount: 15, // Number of chat items
-                separatorBuilder: (context, index) => const Divider(),
+                separatorBuilder: (context, index) => const Divider(
+                  height: 20,
+                thickness: 2,
+                indent: 20,
+                endIndent: 0,
+                color: Colors.white,
+                    ),
                 itemBuilder: (context, index) {
                   return InkWell(
                     onTap: () {
