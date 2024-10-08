@@ -43,7 +43,7 @@ INSTALLED_APPS = [
 EXTERNAL_APPS = [
     'module',
     'rest_framework',
-  
+    'api',
     'NeverNote'
     
 ]
