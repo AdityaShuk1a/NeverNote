@@ -3,8 +3,6 @@ import uuid
 from datetime import datetime
 from django.core.validators import validate_email
 
-# Create your models here.
-
 def current_timestamp():
     return int(datetime.now().timestamp())
 
@@ -14,17 +12,22 @@ class UserModel(models.Model):
     user_email = models.EmailField()
     user_phone_number=models.BigIntegerField(null=False)
     timestamp = models.BigIntegerField(default=current_timestamp, editable=False)
-<<<<<<< HEAD
-    user_password = models.CharField(max_length=25)
-    
-    
-    
-#no changes, just checking
-
-=======
     user_password = models.CharField(max_length=56, default='default_password')
         
-    
-    
-#no changes, just checking
->>>>>>> main
+class NotesModel(models.Model):
+    id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
+    user_id = models.ForeignKey(UserModel, on_delete=models.CASCADE , related_name= 'notes')
+    note_heading = models.CharField(max_length=255, blank=True)
+    note_body= models.TextField(null=False)
+    created_at_timestamp = models.BigIntegerField(default=current_timestamp, editable=False)
+    updated_at_timestamp = models.BigIntegerField(default=current_timestamp, editable=True)
+
+# def save(self, *args, **kwargs):
+#         if not self.pk:
+#             self.created_at_timestamp = current_timestamp()
+#         self.updated_at_timestamp = current_timestamp()
+#         self.note_heading=self.note_body[:60]
+#         super(NotesModel, self).save(*args, **kwargs)
+#     class Meta:
+#         ordering= ['-updated_at_timestamp']
+        

@@ -1,3 +1,7 @@
+
+# def signup(request):
+#     if request == ['POST']
+
 from django.shortcuts import render
 from rest_framework import generics, serializers
 from module.admin import *
@@ -12,7 +16,19 @@ class UserDataList(generics.ListCreateAPIView):
         if(pk == None):
             return UserModel.objects.all().order_by('-timestamp')
         return UserModel.objects.filter(id=pk).order_by('-timestamp')
-        
 
-# def signup(request):
-#     if request == ['POST']
+class NotesModelList(generics.ListCreateAPIView):
+    serializer_class = NotesModelSerializer
+    def get_queryset(self):
+        pk = self.kwargs.get('pk')
+        if(pk == None):
+            return NotesModel.objects.all().order_by('-updated_at_timestamp')
+        return NotesModel.objects.filter(id=pk).order_by('-updated_at_timestamp')        
+
+class AllUserNotesList(generics.ListAPIView):
+    serializer_class = NotesModelSerializer
+    def get_queryset(self):
+        pk = self.kwargs.get('user_id')
+        if(pk == None):
+            return NotesModel.objects.all().order_by('-updated_at_timestamp')
+        return NotesModel.objects.filter(user_id=pk).order_by('-updated_at_timestamp')        
