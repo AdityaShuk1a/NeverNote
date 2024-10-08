@@ -17,5 +17,6 @@
     ],
     "background.autoInstall": true,
     
-    "files.autoSaveDelay":50
+    "files.autoSaveDelay": 50,
+    "cmake.sourceDirectory": "D:/main_project/frontend/linux"
 }

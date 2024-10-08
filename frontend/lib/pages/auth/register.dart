@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 late Size mq;
 
@@ -27,15 +29,61 @@ class _RegisterState extends State<Register> {
     super.dispose();
   }
 
-  void _handleRegisteration() {
+  void _handleRegistration() async {
     final String username = usernameController.text;
-    final String phoneNumber = phoneNumberController.text;
     final String email = emailController.text;
+    final String phoneNumber = phoneNumberController.text;
     final String password = passwordController.text;
     final String confirmPassword = confirmPasswordController.text;
 
-    // here need to code to send the stuff to backend
+    // Check if passwords match
+    if (password != confirmPassword) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Passwords do not match')),
+      );
+      return;
+    }
 
+    // Send registration data to the backend
+    final response = await http.post(
+      Uri.parse('http://127.0.0.1:8000/api/register/'), 
+      headers: <String, String>{
+        'Content-Type': 'application/json; charset=UTF-8',
+      },
+      body: jsonEncode(<String, String>{
+        'username': username,
+        'email': email,
+        'phone_number': phoneNumber,  // Include the phone number here
+        'password': password,
+      }),
+    );
+
+    if (response.statusCode == 201) {
+      // Successful registration
+      ScaffoldMessenger.of(context).showSnackBar(
+        const SnackBar(content: Text('Registration successful!')),
+      );
+     
+    } else {
+      // Handle error response
+      final Map<String, dynamic> errorResponse = json.decode(response.body);
+      String errorMessage = 'Registration failed.';
+
+      // You can customize this further based on the backend's error response
+      if (errorResponse.containsKey('non_field_errors')) {
+        errorMessage = errorResponse['non_field_errors'][0]; // Example for custom errors
+      } else if (errorResponse.containsKey('username')) {
+        errorMessage = errorResponse['username'][0];
+      } else if (errorResponse.containsKey('email')) {
+        errorMessage = errorResponse['email'][0];
+      } else if (errorResponse.isNotEmpty) {
+        errorMessage = errorResponse.values.first[0];  // Generic error handling
+      }
+
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(content: Text(errorMessage)),
+      );
+    }
   }
 
   @override
@@ -113,11 +161,10 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: () {
-                    // Handle registration
-                  },
+                  onPressed: _handleRegistration,
                   child: const Text('Register'),
                 ),
+
                 const SizedBox(height: 24),
                 const Text('or register with'),
                 const SizedBox(height: 16),
@@ -153,5 +200,4 @@ class _RegisterState extends State<Register> {
       ),
     );
   }
-
 }
