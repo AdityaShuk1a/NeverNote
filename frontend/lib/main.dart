@@ -5,6 +5,7 @@ import 'pages/home_page.dart';
 import 'pages/auth/register.dart';
 import 'pages/auth/signin.dart';
 void main() => runApp(MaterialApp(
+  debugShowCheckedModeBanner: false,
   theme: ThemeData(
     appBarTheme: const AppBarTheme(
       centerTitle: true,
@@ -15,7 +16,12 @@ void main() => runApp(MaterialApp(
         
     )
   ),
+<<<<<<< HEAD
   home: const Register(),
+=======
+  home: Home(),
+
+>>>>>>> main
 ));
  
 
