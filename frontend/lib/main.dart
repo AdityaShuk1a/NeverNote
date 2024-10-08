@@ -16,12 +16,7 @@ void main() => runApp(MaterialApp(
         
     )
   ),
-<<<<<<< HEAD
   home: const Register(),
-=======
-  home: Home(),
-
->>>>>>> main
 ));
  
 
