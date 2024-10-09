@@ -1,6 +1,5 @@
-import 'dart:js_interop';
-
 import 'package:flutter/material.dart';
+import 'package:nevernote/pages/notes.dart';
 import 'package:nevernote/pages/profile_page.dart';
 
 class DrawerBar extends StatelessWidget {
@@ -36,6 +35,19 @@ class DrawerBar extends StatelessWidget {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => ProfileCard()),
+              );
+            },
+          ),
+          ListTile(
+            title: const Text(
+              "Notes",
+              style: TextStyle(
+                color: Colors.white,
+              ),),
+            onTap: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => Notes()),
               );
             },
           ),
