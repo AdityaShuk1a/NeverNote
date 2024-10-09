@@ -3,11 +3,14 @@ import 'package:nevernote/models/profile_data.dart';
 import 'package:nevernote/pages/home_page.dart';
 import 'package:nevernote/services/profile_data_service.dart';
 
-class ProfileCard extends StatelessWidget {
-  ProfileCard({super.key});
+class ProfileCard extends StatefulWidget {
+  const ProfileCard({super.key});
 
-  final check = ProfileDataService().fetchProfileData();
+  @override
+  State<ProfileCard> createState() => _ProfileCardState();
+}
 
+class _ProfileCardState extends State<ProfileCard> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -123,3 +126,5 @@ class ProfileCard extends StatelessWidget {
     );
   }
 }
+  
+
