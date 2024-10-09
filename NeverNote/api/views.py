@@ -15,7 +15,7 @@ class UserDataList(generics.ListCreateAPIView):
         pk = self.kwargs.get('pk')
         if(pk == None):
             return UserModel.objects.all().order_by('-timestamp')
-        return UserModel.objects.filter(id=pk).order_by('-timestamp')
+        return UserModel.objects.filter(user_name=pk).order_by('-timestamp')
 
 class NotesModelList(generics.ListCreateAPIView):
     serializer_class = NotesModelSerializer
@@ -23,12 +23,12 @@ class NotesModelList(generics.ListCreateAPIView):
         pk = self.kwargs.get('pk')
         if(pk == None):
             return NotesModel.objects.all().order_by('-updated_at_timestamp')
-        return NotesModel.objects.filter(id=pk).order_by('-updated_at_timestamp')        
+        return NotesModel.objects.filter(user_name_pk=pk).order_by('-updated_at_timestamp')        
 
 class AllUserNotesList(generics.ListAPIView):
     serializer_class = NotesModelSerializer
     def get_queryset(self):
-        pk = self.kwargs.get('user_id')
+        pk = self.kwargs.get('pk')
         if(pk == None):
             return NotesModel.objects.all().order_by('-updated_at_timestamp')
-        return NotesModel.objects.filter(user_id=pk).order_by('-updated_at_timestamp')        
+        return NotesModel.objects.filter(user_name_p=pk).order_by('-updated_at_timestamp')        
