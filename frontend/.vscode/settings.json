@@ -1,0 +1,15 @@
+{
+    "cmake.sourceDirectory": "D:/irlstuff/Mini-Projects/frontend/linux",
+    "background.editorBackgrounds": [
+        "file:///D:/unishitz/dk/alena-aenami-lost-dream-hd.jpg"
+    ],
+    "background.autoInstall": true,
+    "background.backgroundOpacity": [
+        0.2,
+        0.2,
+        0.2,
+        0.2
+    ],
+    "background.smoothImageRendering": true,
+    "background.settingScope": "Workspace"
+}
