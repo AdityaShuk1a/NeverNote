@@ -14,7 +14,15 @@ class UserDataList(generics.ListCreateAPIView):
         if(pk == None):
             return UserModel.objects.all().order_by('-timestamp')
         return UserModel.objects.filter(id=pk).values('user_name', 'user_email', 'user_phone_number').order_by('-timestamp')
+
+class UserDataLeo(generics.ListAPIView):
+    serializer_class = UserModelSerializer
+    def get_queryset(self):
         
+        return UserModel.objects.filter(user_name = "Aditya").order_by('timestamp')
+    
+    
+
 class InsertUserData(generics.GenericAPIView):
     serializer_class = UserModelSerializer
 

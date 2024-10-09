@@ -17,6 +17,6 @@ class UserModel(models.Model):
     user_password = models.CharField(max_length=56, default='default_password')
     # user_profile_image = models.ImageField(upload_to=)
         
-    
+
     
 #no changes, just checking
