@@ -47,9 +47,13 @@ class _HomeState extends State<Home> {
               color: Colors.white,
             ),
             Expanded(
+              
               child: ListView.separated(
+                
                 padding: const EdgeInsets.all(8.0),
-                itemCount: 15, // Number of chat items
+                itemCount: 15,
+                scrollDirection: Axis.vertical,
+                physics: BouncingScrollPhysics(), // Number of chat items
                 separatorBuilder: (context, index) => const Divider(
                   height: 20,
                 thickness: 2,

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:nevernote/pages/notes.dart';
+import 'package:nevernote/pages/notes/notes.dart';
 import 'package:nevernote/pages/profile_page.dart';
 
 class DrawerBar extends StatelessWidget {
