@@ -22,7 +22,6 @@ class _SignInState extends State<SignIn> {
   void _handleLogin() {
     final String username = usernameController.text;
     final String password = passwordController.text;
-
     // here need to code to send the uname and pswd to backend for verification.
 
   }
@@ -39,7 +38,7 @@ class _SignInState extends State<SignIn> {
           decoration: BoxDecoration(
             color: Colors.grey[200],
           ),
-          padding: const EdgeInsets.all(16.0),
+          padding: const EdgeInsets.all(16.0), 
           child: SingleChildScrollView(
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,

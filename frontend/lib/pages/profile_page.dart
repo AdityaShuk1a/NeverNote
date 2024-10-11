@@ -15,132 +15,116 @@ class _ProfileCardState extends State<ProfileCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(
-              context,
-              MaterialPageRoute(builder: (context) => Home()),
-            );
-          },
-          icon: const Icon(Icons.arrow_back_ios_rounded, color: Colors.black),
-        ),
-        title: const Text(
-          "Profile",
-          style: TextStyle(color: Colors.black),
-        ),
-        centerTitle: true,
+        leading: IconButton(onPressed: () {
+          Navigator.pop(
+            context,
+            MaterialPageRoute(builder: (context) => Home() )
+          );
+        }, icon: Icon(Icons.arrow_back_ios_rounded)),
+        title: Text("Profile",
+        style: TextStyle(
+          color: Colors.black,
+        ),),
       ),
       body: FutureBuilder(
         future: ProfileDataService().fetchProfileData(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            
-            var profile = snapshot.data as List ;
-            print(profile.length);
+            var profile = snapshot.data! as List<ProfileData>;
             return Center(
-            child: Container(
-              padding: EdgeInsets.all(20.0),
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.85,
-                padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
-                  gradient: LinearGradient(
-                    colors: [Colors.blueGrey[900]!, Colors.blueGrey[700]!],
-                    begin: Alignment.topLeft,
-                    end: Alignment.bottomRight,
-                  ),
-                  borderRadius: BorderRadius.circular(20),
+                  color: Colors.black87,
+                  borderRadius: BorderRadius.circular(16),
                   boxShadow: [
                     BoxShadow(
-                      color: Colors.black26,
-                      blurRadius: 10,
-                      offset: const Offset(2, 4),
+                      color: Colors.black54.withOpacity(0.5),
+                      spreadRadius: 3,
+                      blurRadius: 7,
+                      offset: Offset(0, 3),
                     ),
                   ],
                 ),
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    CircleAvatar(
-                      radius: 60,
-                      backgroundColor: Colors.grey[300],
-                      child: Text(
-                        'A',
-                        style: TextStyle(
-                          color: Colors.black,
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.spaceAround,
+                    children: [
+                      const CircleAvatar(
+                        backgroundColor: Colors.white,
+                        radius: 100,
+                        child: Text(
+                          "A",
+                          style: TextStyle(fontSize: 40.0, color: Colors.black),
                         ),
                       ),
-                    ),
-                    const SizedBox(height: 20),
-                    Text(
-                      profile[0].fullName!,
-                      style: const TextStyle(
-                        fontSize: 28,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                        shadows: [
-                          Shadow(
-                            color: Colors.black26,
-                            offset: Offset(2, 2),
-                            blurRadius: 4,
-                          ),
-                        ],
+                      // const SizedBox(height: 20.0),
+                      const Divider(
+                        color: Colors.grey,
+                        thickness: 1.5,
+                        height: 5,
                       ),
-                    ),
-                    const SizedBox(height: 10),
-                    Container(
-                      width: double.infinity,
-                      padding: const EdgeInsets.all(15),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.1),
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            children: [
-                              const Icon(Icons.email, color: Colors.white70),
-                              const SizedBox(width: 10),
-                              Text(
-                                profile[0].userEmail!,
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white70,
-                                ),
+                      // const SizedBox(height: 20.0),
+                      Container(
+                        width: double.infinity,
+                        padding: const EdgeInsets.all(15.0),
+                        decoration: BoxDecoration(
+                          color: Colors.grey[800],
+                          borderRadius: BorderRadius.circular(10),
+                          border: Border.all(color: Colors.white70),
+                        ),
+                        child: Column(
+                          children: [
+                            Text(
+                              profile[0].fullName!,
+                              style: const TextStyle(
+                                fontSize: 24.0,
+                                fontWeight: FontWeight.bold,
+                                color: Colors.white,
+                                shadows: [
+                                  Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 4),
+                                ],
                               ),
-                            ],
-                          ),
-                          const SizedBox(height: 10),
-                          Row(
-                            children: [
-                              const Icon(Icons.phone, color: Colors.white70),
-                              const SizedBox(width: 10),
-                              Text(
-                                profile[0].userPhoneNumber.toString(),
-                                style: const TextStyle(
-                                  fontSize: 16,
-                                  color: Colors.white70,
-                                ),
+                            ),
+                            const SizedBox(height: 8.0),
+                            Text(
+                              profile[0].userEmail!,
+                              style: const TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white70,
+                                shadows: [
+                                  Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 4),
+                                ],
                               ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            const SizedBox(height: 8.0),
+                            Text(
+                              profile[0].userPhoneNumber.toString(),
+                              style: const TextStyle(
+                                fontSize: 18.0,
+                                color: Colors.white70,
+                                shadows: [
+                                  Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 4),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 ),
               ),
-            )
             );
           } else if (snapshot.hasError) {
             return Center(child: Text('Error: ${snapshot.error}'));
           }
-          return const Center(child: CircularProgressIndicator(color: Colors.blue));
+          return const Center(child: CircularProgressIndicator(color: Colors.white));
         },
       ),
     );
   }
 }
+  
+
