@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:nevernote/components/notes_card.dart';
 import 'package:nevernote/pages/home_page.dart';
 import 'package:nevernote/services/notes_data_service.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
+// import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 
 class Notes extends StatefulWidget {
   const Notes({super.key});
