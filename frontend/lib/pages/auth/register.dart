@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nevernote/services/register_service.dart';
 import 'package:nevernote/models/register_model.dart';
+import 'package:nevernote/helpers/alert_helper.dart';
+
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -18,7 +20,6 @@ class _RegisterState extends State<Register> {
   final TextEditingController _phoneController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
   final TextEditingController _confirmPasswordController = TextEditingController();
-
 
   @override
   void dispose() {
@@ -41,51 +42,31 @@ class _RegisterState extends State<Register> {
     final password = _passwordController.text;
     final confirmPassword = _confirmPasswordController.text;
 
-// just values aa rhi ya nhi uske liye terminal pe print kr raha
-    print('Username: $username');
-    print('First Name: $firstName');
-    print('Last Name: $lastName');
-    print('Email: $email');
-    print('Phone: $phone');
-    print('Password: $password');
-    print('Confirm Password: $confirmPassword');
-
-    // yaha checking if pswd == confirm pswd not complex validation
+    // Checking if password and confirm password match
     if (password != confirmPassword) {
-      print('Passwords do not match');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('Passwords do not match')),
-      );
+      showAlertDialog(context ,'Error', 'Passwords do not match');
       return;
     }
 
     final registerModel = RegisterModel(
-      username: username,
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      phone: phone,
-      password: password,
+      userName: username,
+      userFirstName: firstName,
+      userLastName: lastName,
+      userEmail: email,
+      userPhoneNumber: phone,
+      userPassword: password,
     );
 
-    // making a  RegisterService instance and calling registerUser
+    // Creating RegisterService instance and calling registerUser
     final registerService = RegisterService();
-    registerService.registerUser(registerModel).then((success) {
-      if (success) {
-        // thsi is what i think should happen if the registration is successful i.e. Navigate to login or home page
-        Navigator.pushNamed(context, '/signin'); // temporary
+    registerService.registerUser(registerModel).then((message) {
+      if (message != null && message.contains('successfully')) {
+        showAlertDialog(context, 'Success', message);
       } else {
-        // agar refistration fails, handling it
-        ScaffoldMessenger.of(context).showSnackBar(
-          const SnackBar(content: Text('Registration failed. Please try again.')),
-        );
+        showAlertDialog(context, 'Error', message ?? 'Registration failed. Please try again.');
       }
     }).catchError((error) {
-
-      print('Error: $error');
-      ScaffoldMessenger.of(context).showSnackBar(
-        const SnackBar(content: Text('An error occurred. Please try again.')),
-      );
+      showAlertDialog(context, 'Error', 'An error occurred. Please try again.');
     });
   }
 
@@ -180,7 +161,7 @@ class _RegisterState extends State<Register> {
                 ),
                 const SizedBox(height: 24),
                 ElevatedButton(
-                  onPressed: handleRegister, 
+                  onPressed: handleRegister,
                   child: const Text('Register'),
                 ),
                 const SizedBox(height: 24),

@@ -1,28 +1,28 @@
 class RegisterModel {
-  String username;
-  String firstName;
-  String lastName;
-  String email;
-  String phone;
-  String password;
+  final String userName;
+  final String userFirstName;
+  final String userLastName;
+  final String userEmail;
+  final String userPhoneNumber;
+  final String userPassword;
 
   RegisterModel({
-    required this.username,
-    required this.firstName,
-    required this.lastName,
-    required this.email,
-    required this.phone,
-    required this.password,
+    required this.userName,
+    required this.userFirstName,
+    required this.userLastName,
+    required this.userEmail,
+    required this.userPhoneNumber,
+    required this.userPassword,
   });
 
   Map<String, dynamic> toJson() {
     return {
-      'username': username,
-      'first_name': firstName,
-      'last_name': lastName,
-      'email': email,
-      'phone': phone,
-      'password': password,
+      'user_name': userName,
+      'user_first_name': userFirstName,
+      'user_last_name': userLastName,
+      'user_email': userEmail,
+      'user_phone_number': userPhoneNumber,
+      'user_password': userPassword,
     };
   }
 }

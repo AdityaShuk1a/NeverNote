@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nevernote/services/signin_service.dart';
 import 'package:nevernote/models/signin_model.dart';
+import 'package:nevernote/helpers/alert_helper.dart'; 
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -14,22 +15,29 @@ class _SignInState extends State<SignIn> {
   final TextEditingController _usernameController = TextEditingController();
   final TextEditingController _passwordController = TextEditingController();
 
-  final SignInServices _signInServices = SignInServices(); 
+  final SignInService _signInService = SignInService(); 
 
   Future<void> handleLogin() async {
     final username = _usernameController.text;
     final password = _passwordController.text;
+    
+    final signInModel = SignInModel(
+      userName: username,
+      userPassword: password,
+    );
 
     print('Logging in with username: $username and password: $password');
 
-
-    LoginResponse response = await _signInServices.login(username, password);
+    LoginResponse response = await _signInService.login(signInModel);
 
     if (response.success) {
       // same here as in register.dart (just above) theorizing what happens when we get response signalling that the username and pasword match in database. I think we should Navigate to the next screen or show a success message
       print('Login successful! Token: ${response.token}');
+      showAlertDialog(context, 'Success', 'Login successful!');
+      //next we gotta add place to navigate to.
     } else {
       print('Login failed: ${response.error}');
+      showAlertDialog(context, 'Error', response.error ?? 'Login failed. Please try again.');
     }
   }
 
@@ -64,6 +72,7 @@ class _SignInState extends State<SignIn> {
                   ElevatedButton(
                     onPressed: (){
                       // goto register page
+                      Navigator.pushNamed(context, '/register');
                     },
                     child: const Text('Register'),
                   ),
@@ -72,13 +81,17 @@ class _SignInState extends State<SignIn> {
               const SizedBox(height: 48),
               TextFormField(
                 controller: _usernameController,
-                decoration: const InputDecoration(labelText: 'Username'),
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  border: OutlineInputBorder()
+                  ),
+
               ),
               const SizedBox(height: 16),
               TextFormField(
                 controller: _passwordController,
                 obscureText: true,
-                decoration: const InputDecoration(labelText: 'Password'),
+                decoration: const InputDecoration(labelText: 'Password', border: OutlineInputBorder()),
               ),
               const SizedBox(height: 24),
               ElevatedButton(
