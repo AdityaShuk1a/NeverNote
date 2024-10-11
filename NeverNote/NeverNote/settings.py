@@ -37,6 +37,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'corsheaders',
 ]
 
 EXTERNAL_APPS = [
@@ -55,6 +56,8 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'corsheaders.middleware.CorsMiddleware',
+    'django.middleware.common.CommonMiddleware',
 ]
 
 ROOT_URLCONF = 'NeverNote.urls'
@@ -77,6 +80,16 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'NeverNote.wsgi.application'
 
+CORS_ALLOW_ALL_ORIGINS = True
+
+CORS_ALLOWED_ORIGINS = [
+    "http://localhost:8000",
+    "http://127.0.0.1:8000",
+    "http://10.0.2.2:8000",
+    "http://0.0.0.0:8000",
+    "http://172.26.83.117:8000",
+    # Add other origins if needed
+]
 
 # Database
 # https://docs.djangoproject.com/en/5.1/ref/settings/#databases

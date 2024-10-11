@@ -9,3 +9,12 @@ class UserModelSerializer(serializers.ModelSerializer):
         
 def create(self, validated_data):
     return UserModel.objects.create(**validated_data)
+
+
+class NotesModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NotesModel
+        fields = '__all__'
+        
+def create(self, validated_data):
+    return NotesModel.objects.create(**validated_data)
