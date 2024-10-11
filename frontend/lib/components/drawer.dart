@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
-<<<<<<< HEAD
 import 'package:nevernote/pages/notes/notes.dart';
 import 'package:nevernote/pages/profile_page.dart';
 
 
 
-=======
-import 'package:nevernote/pages/notes.dart';
-import 'package:nevernote/pages/profile_page.dart';
-
->>>>>>> b1144980cbdb1967608c346798922b59a7529f6d
 class DrawerBar extends StatelessWidget {
   const DrawerBar({super.key});
 
