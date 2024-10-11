@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
     "cmake.sourceDirectory": "D:/irlstuff/Mini-Projects/frontend/linux",
     "background.editorBackgrounds": [
         "file:///D:/unishitz/dk/alena-aenami-lost-dream-hd.jpg"
@@ -12,4 +13,25 @@
     ],
     "background.smoothImageRendering": true,
     "background.settingScope": "Workspace"
+=======
+    
+    "editor.fontSize": 14,
+    
+    "editor.wordWrap": "on",
+    "vscode-pets.petSize": "small",
+    "vscode-pets.throwBallWithMouse": true,
+    "vscode-pets.theme": "castle",
+    "vscode-pets.petColor": "lightbrown",
+    "git.autofetch": true,
+    "files.autoSave": "afterDelay",
+    "explorer.confirmDragAndDrop": false,
+    "editor.inlineSuggest.showToolbar": "always",
+    
+    "background.windowBackgrounds": [
+        "file:///C:/Users/adity/OneDrive/Desktop/spider%20man.jpg"
+    ],
+    "background.autoInstall": true,
+    
+    "files.autoSaveDelay":50
+>>>>>>> b1144980cbdb1967608c346798922b59a7529f6d
 }

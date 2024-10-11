@@ -25,7 +25,7 @@ SECRET_KEY = 'django-insecure-p#cbl=qlxh#y-ds8vj(8tj=u659)a(ta#5)=$1wx%!pay==#7r
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['10.0.2.2','127.0.0.1', '0.0.0.0','172.26.83.117']
 
 
 # Application definition
@@ -44,6 +44,7 @@ EXTERNAL_APPS = [
     'module',
     'rest_framework',
     'api',
+    
 ]
 
 INSTALLED_APPS = INSTALLED_APPS + EXTERNAL_APPS

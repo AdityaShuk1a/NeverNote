@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+import 'dart:convert';
+import 'package:http/http.dart' as http;
+>>>>>>> b1144980cbdb1967608c346798922b59a7529f6d
 
 class ProfileData {
   String? fullName;
