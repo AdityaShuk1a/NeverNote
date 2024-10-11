@@ -18,7 +18,6 @@ class UserModel(models.Model):
     user_password = models.CharField(max_length=56, default='default_password')
     # user_profile_image = models.ImageField(upload_to=)
         
-<<<<<<< HEAD
 class NotesModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
     user_name_pk = models.ForeignKey(UserModel, on_delete=models.CASCADE , related_name= 'notes')
@@ -36,8 +35,3 @@ class NotesModel(models.Model):
 #     class Meta:
 #         ordering= ['-updated_at_timestamp']
         
-=======
-
-    
-#no changes, just checking
->>>>>>> b1144980cbdb1967608c346798922b59a7529f6d
