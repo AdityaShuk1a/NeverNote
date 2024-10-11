@@ -4,4 +4,4 @@ from module.models import *
 
 
 admin.site.register(UserModel)
-# admin.site.register(CustomUser)
+admin.site.register(NotesModel)     

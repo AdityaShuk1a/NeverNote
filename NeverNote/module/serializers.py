@@ -10,24 +10,16 @@ class UserModelSerializer(serializers.ModelSerializer):
         model = UserModel
         fields = '__all__'
         
-def create(self, validated_data):
-    return UserModel.objects.create(**validated_data)
+    def create(self, validated_data):
+        return UserModel.objects.create(**validated_data)
 
-# class CustomUserSerializer(serializers.ModelSerializer):
-#     # password = serializers.CharField(write_only=True)
-#     # phone_number = serializers.CharField(max_length=15)
 
-#     class Meta:
-#         model = CustomUser 
-#         fields = '__all__'
-
-#     def create(self, validated_data):
-#         # user = CustomUser(
-#         #     username=validated_data['username'],
-#         #     email=validated_data['email'],
-#         #     phone_number=validated_data['phone_number'],
-#         # )
-#         # user.set_password(validated_data['password'])
-#         # user.save()
-#         return CustomUser.objects.create(**validated_data)
+class NotesModelSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = NotesModel
+        fields = '__all__'
+        
+    def create(self, validated_data):
+        return NotesModel.objects.create(**validated_data)
     
+
