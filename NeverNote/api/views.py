@@ -31,4 +31,4 @@ class AllUserNotesList(generics.ListAPIView):
         pk = self.kwargs.get('pk')
         if(pk == None):
             return NotesModel.objects.all().order_by('-updated_at_timestamp')
-        return NotesModel.objects.filter(user_name_p=pk).order_by('-updated_at_timestamp')        
+        return NotesModel.objects.filter(user_name_pk=pk).order_by('-updated_at_timestamp')        

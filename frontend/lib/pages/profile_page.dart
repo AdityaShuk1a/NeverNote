@@ -20,7 +20,9 @@ class _ProfileCardState extends State<ProfileCard> {
             context,
             MaterialPageRoute(builder: (context) => Home() )
           );
+        // ignore: prefer_const_constructors
         }, icon: Icon(Icons.arrow_back_ios_rounded)),
+        // ignore: prefer_const_constructors
         title: Text("Profile",
         style: TextStyle(
           color: Colors.black,
@@ -30,7 +32,7 @@ class _ProfileCardState extends State<ProfileCard> {
         future: ProfileDataService().fetchProfileData(),
         builder: (context, snapshot) {
           if (snapshot.hasData) {
-            var profile = snapshot.data! as List<ProfileData>;
+            var profile = snapshot.data! as List;
             return Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.85,
