@@ -1,30 +1,28 @@
-from django.shortcuts import render
-from rest_framework import generics, serializers
+
+from rest_framework import generics, status
+from rest_framework.permissions import DjangoModelPermissionsOrAnonReadOnly
 from module.admin import *
 from module.models import *
 from module.serializers import *
+from rest_framework.exceptions import NotFound
+from rest_framework.response import Response
+
+from rest_framework.views import APIView
+
 # Create your views here.
 
 class UserDataList(generics.ListCreateAPIView):
+    queryset = UserModel.objects.all().order_by('-timestamp')
     serializer_class = UserModelSerializer
-    def get_queryset(self):
-        pk = self.kwargs.get('pk')
-        if(pk == None):
-            return UserModel.objects.all().order_by('-timestamp')
-        return UserModel.objects.filter(user_name=pk).order_by('-timestamp')
 
 class NotesModelList(generics.ListCreateAPIView):
+    queryset = NotesModel.objects.all().order_by('-updated_at_timestamp')
     serializer_class = NotesModelSerializer
-    def get_queryset(self):
-        pk = self.kwargs.get('pk')
-        if(pk == None):
-            return NotesModel.objects.all().order_by('-updated_at_timestamp')
-        return NotesModel.objects.filter(user_name_pk=pk).order_by('-updated_at_timestamp')        
+          
+class NoteUpdateDeleteView(generics.RetrieveUpdateDestroyAPIView):
+    
+    queryset = NotesModel.objects.all()  # Set the base queryset
+    serializer_class = NotesModelSerializer
+    # permission_classes = [DjangoModelPermissionsOrAnonReadOnly]
 
-class AllUserNotesList(generics.ListAPIView):
-    serializer_class = NotesModelSerializer
-    def get_queryset(self):
-        pk = self.kwargs.get('pk')
-        if(pk == None):
-            return NotesModel.objects.all().order_by('-updated_at_timestamp')
-        return NotesModel.objects.filter(user_name_pk=pk).order_by('-updated_at_timestamp')  
+    
