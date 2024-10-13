@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:nevernote/pages/notes/notes.dart';
-// import 'package:nevernote/pages/notes.dart';
 import 'package:nevernote/pages/profile_page.dart';
 
 class DrawerBar extends StatelessWidget {
@@ -27,7 +26,6 @@ class DrawerBar extends StatelessWidget {
             ),
           ),
           ListTile(
-            
             title: const Text(
               "Profile",
               style: TextStyle(
