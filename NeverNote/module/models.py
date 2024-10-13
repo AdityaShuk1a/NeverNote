@@ -21,7 +21,7 @@ class UserModel(models.Model):
         
 class NotesModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_name_pk = models.ForeignKey(UserModel, on_delete=models.CASCADE , related_name= 'notes')
+    user_name_pk = models.ForeignKey(UserModel, on_delete=models.CASCADE , related_name= 'notes', editable=False)
     note_heading = models.CharField(max_length=255, blank=True)
     note_body= models.TextField(null=False)
     created_at_timestamp = models.BigIntegerField(default=current_timestamp, editable=False)

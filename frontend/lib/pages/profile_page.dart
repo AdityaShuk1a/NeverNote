@@ -15,16 +15,16 @@ class _ProfileCardState extends State<ProfileCard> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: IconButton(onPressed: () {
-          Navigator.pop(
-            context,
-            MaterialPageRoute(builder: (context) => Home() )
-          );
-        }, icon: Icon(Icons.arrow_back_ios_rounded)),
-        title: Text("Profile",
-        style: TextStyle(
-          color: Colors.black,
-        ),),
+        leading: IconButton(
+          onPressed: () {
+            Navigator.pop(context, MaterialPageRoute(builder: (context) => Home()));
+          },
+          icon: const Icon(Icons.arrow_back_ios_rounded),
+        ),
+        title: const Text(
+          "Profile",
+          style: TextStyle(color: Colors.black),
+        ),
       ),
       body: FutureBuilder(
         future: ProfileDataService().fetchProfileData(),
@@ -34,86 +34,65 @@ class _ProfileCardState extends State<ProfileCard> {
             return Center(
               child: Container(
                 width: MediaQuery.of(context).size.width * 0.85,
-                decoration: BoxDecoration(
-                  color: Colors.black87,
-                  borderRadius: BorderRadius.circular(16),
-                  boxShadow: [
-                    BoxShadow(
-                      color: Colors.black54.withOpacity(0.5),
-                      spreadRadius: 3,
-                      blurRadius: 7,
-                      offset: Offset(0, 3),
+                child: Column(
+                  children: [
+                    Stack(
+                      clipBehavior: Clip.none,
+                      children: [
+                        Image.network(
+                          "https://th.bing.com/th/id/OIP.zIWiSIkJN6_EFgJrQwyXFwHaE8?rs=1&pid=ImgDetMain",
+                          height: 240,
+                          width: double.infinity,
+                          fit: BoxFit.cover,
+                        ),
+                        Positioned(
+                          bottom: -50,
+                          left: MediaQuery.of(context).size.width * 0.35,
+                          child: CircleAvatar(
+                            backgroundColor: Colors.white,
+                            radius: 50,
+                            child: const Text(
+                              "A",
+                              style: TextStyle(fontSize: 40.0, color: Colors.black),
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                    const SizedBox(height: 70), // Adjusted to prevent overlap
+                    const Divider(color: Colors.grey, thickness: 1.5, height: 5),
+                    const SizedBox(height: 20),
+                    const Text(
+                      "Account Info",
+                      style: TextStyle(
+                        fontSize: 22.0,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
+                      ),
+                    ),
+                    const SizedBox(height: 10),
+                    Expanded(
+                      child: ListView(
+                        children: [
+                          _buildProfileTile(
+                            icon: Icons.person,
+                            title: "UserName",
+                            subtitle: profile[0].fullName!,
+                          ),
+                          _buildProfileTile(
+                            icon: Icons.email,
+                            title: "Email",
+                            subtitle: profile[0].userEmail!,
+                          ),
+                          _buildProfileTile(
+                            icon: Icons.phone,
+                            title: "Phone Number",
+                            subtitle: profile[0].userPhoneNumber.toString(),
+                          ),
+                        ],
+                      ),
                     ),
                   ],
-                ),
-                child: Padding(
-                  padding: const EdgeInsets.all(20.0),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-                      const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        radius: 100,
-                        child: Text(
-                          "A",
-                          style: TextStyle(fontSize: 40.0, color: Colors.black),
-                        ),
-                      ),
-                      // const SizedBox(height: 20.0),
-                      const Divider(
-                        color: Colors.grey,
-                        thickness: 1.5,
-                        height: 5,
-                      ),
-                      // const SizedBox(height: 20.0),
-                      Container(
-                        width: double.infinity,
-                        padding: const EdgeInsets.all(15.0),
-                        decoration: BoxDecoration(
-                          color: Colors.grey[800],
-                          borderRadius: BorderRadius.circular(10),
-                          border: Border.all(color: Colors.white70),
-                        ),
-                        child: Column(
-                          children: [
-                            Text(
-                              profile[0].fullName!,
-                              style: const TextStyle(
-                                fontSize: 24.0,
-                                fontWeight: FontWeight.bold,
-                                color: Colors.white,
-                                shadows: [
-                                  Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 4),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 8.0),
-                            Text(
-                              profile[0].userEmail!,
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white70,
-                                shadows: [
-                                  Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 4),
-                                ],
-                              ),
-                            ),
-                            const SizedBox(height: 8.0),
-                            Text(
-                              profile[0].userPhoneNumber.toString(),
-                              style: const TextStyle(
-                                fontSize: 18.0,
-                                color: Colors.white70,
-                                shadows: [
-                                  Shadow(color: Colors.black54, offset: Offset(1, 1), blurRadius: 4),
-                                ],
-                              ),
-                            ),
-                          ],
-                        ),
-                      ),
-                    ],
-                  ),
                 ),
               ),
             );
@@ -125,6 +104,41 @@ class _ProfileCardState extends State<ProfileCard> {
       ),
     );
   }
-}
-  
 
+  Widget _buildProfileTile({
+    required IconData icon,
+    required String title,
+    required String subtitle,
+  }) {
+    return Container(
+      margin: const EdgeInsets.symmetric(vertical: 8.0, horizontal: 15.0),
+      child: ListTile(
+        leading: CircleAvatar(
+          backgroundColor: Colors.lightBlueAccent,
+          child: Icon(icon, color: Colors.white),
+        ),
+        title: Text(
+          title,
+          style: const TextStyle(
+            fontSize: 18.0,
+            fontWeight: FontWeight.bold,
+            color: Colors.black,
+          ),
+        ),
+        subtitle: Text(
+          subtitle,
+          style: const TextStyle(
+            fontSize: 16.0,
+            color: Colors.black87,
+          ),
+        ),
+        tileColor: Colors.lightBlue[50],
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50), // Circular border
+        ),
+        dense: true,
+        contentPadding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+      ),
+    );
+  }
+}

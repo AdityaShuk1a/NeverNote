@@ -9,9 +9,9 @@ class ProfileDataService {
     try{
 
       String baseUrl = 'http://127.0.0.1:8000/';
-      final response = await http.get(Uri.parse(baseUrl+'yaha/959cdb31-469a-4589-b658-9aa4b7c4806b'));
+      final response = await http.get(Uri.parse(baseUrl+'yaha/AdityaShukla'));
 
-      print(response);
+      print(response.body);
       if (response.statusCode == 200) {
         var data = response.body;
 
