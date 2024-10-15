@@ -21,16 +21,16 @@ void main() => runApp(
           
       )
     ),
-    // home:  const Register(), // changed by Abhijit
+    home:  Home(), // changed by Abhijit
 
     //setting up named routes:
-    initialRoute: '/register',
-    routes: {
-      '/register' : (context) => const Register(),
-      '/signin' : (context) => const SignIn(),
-      '/home':  (context) => const Home(),
-      '/profile' : (context) =>  ProfileCard(),
-    },
+    // initialRoute: '/register',
+    // routes: {
+    //   '/register' : (context) => const Register(),
+    //   '/signin' : (context) => const SignIn(),
+    //   '/home':  (context) => const Home(),
+    //   '/profile' : (context) =>  ProfileCard(),
+    // },
   ),
 );
  

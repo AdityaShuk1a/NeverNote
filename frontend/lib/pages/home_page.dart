@@ -11,22 +11,28 @@ class Home extends StatefulWidget {
 }
 
 class _HomeState extends State<Home> {
+  // Sample list of user data
+  final List<Map<String, String>> users = [
+    {"name": "Alice", "initial": "A"},
+    {"name": "Bob", "initial": "B"},
+    {"name": "Charlie", "initial": "C"},
+  ];
+
   @override
   Widget build(BuildContext context) {
-    mq = MediaQuery.of(context).size;
+    mq = MediaQuery.of(context).size; // Store screen size
     return Scaffold(
       appBar: AppBar(
         leading: Builder(
           builder: (context) {
             return IconButton(
-              icon: Icon(Icons.menu, color: Colors.white), // Custom icon and color
+              icon: const Icon(Icons.menu, color: Colors.white), // Custom icon
               onPressed: () {
-                Scaffold.of(context).openDrawer();
+                Scaffold.of(context).openDrawer(); // Open drawer on click
               },
             );
           },
         ),
-        
         centerTitle: true,
         title: const Text(
           'NeverNote',
@@ -35,72 +41,77 @@ class _HomeState extends State<Home> {
         backgroundColor: const Color.fromARGB(255, 0, 0, 0),
         elevation: 4,
       ),
-      drawer: DrawerBar(),
-      body: Container(
-        decoration: const BoxDecoration(
-          color: Colors.black,
-        ),
-        child: Column(
-          children: [
-            const Divider(
-              height: 10.0,
-              color: Colors.white,
-            ),
-            Expanded(
-              child: ListView.separated(
-                padding: const EdgeInsets.all(8.0),
-                itemCount: 15, // Number of chat items
-                separatorBuilder: (context, index) => const Divider(
-                  height: 20,
-                thickness: 2,
-                indent: 20,
-                endIndent: 0,
-                color: Colors.white,
-                    ),
-                itemBuilder: (context, index) {
-                  return InkWell(
-                    onTap: () {
-                      // Handle chat tap
-                      print('Chat ${index + 1} tapped');
-                      
-                    },
-                    child: ListTile(
-                      
-                      leading: const CircleAvatar(
-                        backgroundColor: Colors.white,
-                        child: Text(
-                          'A',
-                          style: TextStyle(
-                            color: Colors.black,
-                          ),
-                        ), // Placeholder for contact initial
-                      ),
-                      title: Text(
-                        'Chat ${index + 1}',
-                        style: const TextStyle(
-                          color: Colors.white,
-                        ),
-                      
-                      ),
-                      subtitle: const Text(
-                        'Previous typed msg....',
-                      style: TextStyle(
-                        color: Colors.grey,
-                      ),
-                      ),
-                      trailing: const Text(
-                        '12:00 PM',
-                        style: TextStyle(
-                          color: Colors.grey,
-                        ),), // Placeholder for timestamp
-                    ),
-                  );
-                },
+      drawer: const DrawerBar(), // Use your custom drawer
+      body: ListView.builder(
+        itemCount: users.length, // Number of list items
+        itemBuilder: (context, index) {
+          final user = users[index]; // Get user data
+          return Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 8.0),
+            child: Card(
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0), // Rounded corners
               ),
+              elevation: 3,
+              child: Column(
+                children: [
+                  Container(
+                    child: ListTile(
+                leading: CircleAvatar(
+                  backgroundColor: Colors.blueAccent, // Avatar background
+                  child: Text(
+                    user['initial']!, // Initial of user
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                ),
+                title: Text(
+                  user['name']!, // Username
+                  style: const TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
+                
+                onTap: () {
+                  _showUserDetails(user['name']!); // Handle tap
+                },
+                
+              ),
+                  )
+                  
+                ],
+
+              )
+              
+
+            ),
+          );
+        },
+      ),
+    );
+  }
+
+  // Method to display a user's details
+  void _showUserDetails(String name) {
+    showDialog(
+      context: context,
+      builder: (context) {
+        return AlertDialog(
+          title: Text('User: $name'),
+          content: const Text('This is the user\'s detail page.'),
+          actions: [
+            TextButton(
+              onPressed: () {
+                Navigator.pop(context);
+              },
+              child: const Text('Close'),
             ),
           ],
-        ),
-      ),
+        );
+      },
     );
   }
 }

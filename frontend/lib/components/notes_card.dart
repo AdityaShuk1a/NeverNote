@@ -18,10 +18,6 @@ class _NotesCardState extends State<NotesCard> {
 
   Widget build(BuildContext context) {
     return ListView(
-      // padding: EdgeInsets.all(15.0),
-      
-       
-      
       
           children: [
             Container(
