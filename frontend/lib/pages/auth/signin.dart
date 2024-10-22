@@ -3,6 +3,7 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:nevernote/services/signin_service.dart';
 import 'package:nevernote/models/signin_model.dart';
 import 'package:nevernote/helpers/alert_helper.dart';
+import 'package:nevernote/helpers/user_data.dart';
 
 class SignIn extends StatefulWidget {
   const SignIn({Key? key}) : super(key: key);
@@ -52,8 +53,13 @@ class _SignInState extends State<SignIn> with SingleTickerProviderStateMixin {
 
     if (response.success) {
       print('Login successful! Token: ${response.token}');
+      // Save the username globally
+      UserData.username = username;
+
       showAlertDialog(context, 'Success', 'Login successful!');
       // Navigate to the next screen
+      Navigator.pushNamed(context , '/home');
+
     } else {
       print('Login failed: ${response.error}');
       showAlertDialog(context, 'Error', response.error ?? 'Login failed. Please try again.');
