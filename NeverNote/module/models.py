@@ -21,10 +21,11 @@ class UserModel(models.Model):
         
 class NotesModel(models.Model):
     id = models.UUIDField(primary_key=True, default=uuid.uuid4, editable=False)
-    user_name_pk = models.ForeignKey(UserModel, on_delete=models.CASCADE , related_name= 'notes', editable=False)
+    user_name_pk = models.ForeignKey(UserModel, on_delete=models.CASCADE , related_name= 'notes', editable=True)
     note_heading = models.CharField(max_length=255, blank=True)
     note_body= models.TextField(null=False)
+    post_note_global = models.BooleanField(default=False, null=True)
     created_at_timestamp = models.BigIntegerField(default=current_timestamp, editable=False)
-    updated_at_timestamp = models.BigIntegerField(default=current_timestamp, editable=True)
+    updated_at_timestamp = models.BigIntegerField(default=current_timestamp, editable=False)
     
 #no changes, just checking
