@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:nevernote/helpers/user_data.dart';
 import 'package:nevernote/services/register_service.dart';
 import 'package:nevernote/models/register_model.dart';
 import 'package:nevernote/helpers/alert_helper.dart';
+import 'package:nevernote/pages/home_page.dart';
+
 
 class Register extends StatefulWidget {
   const Register({super.key});
@@ -107,6 +110,10 @@ class _RegisterState extends State<Register> with SingleTickerProviderStateMixin
     registerService.registerUser(registerModel).then((message) {
       if (message != null && message.contains('successfully')) {
         showAlertDialog(context, 'Success', message);
+        // Save the username globally
+      UserData.username = username;
+
+        Navigator.pushNamed(context , '/home');
       } else {
         showAlertDialog(context, 'Error', message ?? 'Registration failed. Please try again.');
       }
@@ -380,3 +387,4 @@ class ProgressIndicatorWidget extends StatelessWidget {
     );
   }
 }
+
